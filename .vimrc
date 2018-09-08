@@ -64,6 +64,12 @@ let g:airline_theme='badwolf'
 " All of your Plugins must be added before the following line
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
+Plugin 'universal-ctags/ctags'
+Plugin 'kien/ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" NERDTree
+Plugin 'scrooloose/nerdtree'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -94,3 +100,8 @@ if &t_Co > 2 || has("gui_running")
         syntax on       " Switch syntax highlighting on, when the terminal has colors
         set hlsearch        " Also switch on highlighting the last used search pattern.
 endif
+
+" move among buffers with CTRL
+map <C-K> :bnext<CR>
+map <C-J> :bprev<CR>
+map <C-X> :bdelete<CR>

@@ -101,3 +101,4 @@ bindkey "^[[6~" history-beginning-search-forward"]]]]"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ll='ls -al'
