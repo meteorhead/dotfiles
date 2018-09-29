@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+:fixdel
 " VIM arrow keys not functioning properly on windows
 :set term=builtin_ansi
 " set UTF-8 encoding
@@ -27,7 +27,8 @@ set number
 set showmatch
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -47,8 +48,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
+" git repos on your local machine (i.e. when working on your own plugin) " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -60,9 +60,11 @@ Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='badwolf'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+set laststatus=2
 " All of your Plugins must be added before the following line
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'universal-ctags/ctags'
 Plugin 'kien/ctrlp.vim'
@@ -70,6 +72,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
+Plugin 'sjl/badwolf'
+Plugin 'morhetz/gruvbox'
+Plugin 'AlessandroYorba/Alduin'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -85,9 +90,10 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 syntax enable
-let g:solarized_termcolors=256
 "set background=dark
 colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Terminal-as-GUI settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -102,6 +108,21 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " move among buffers with CTRL
+
 map <C-K> :bnext<CR>
 map <C-J> :bprev<CR>
 map <C-X> :bdelete<CR>
+
+" Toggle NERDTree
+map <C-N> :NERDTreeToggle<CR>
+
+" Close NERDTree if no other window is open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+nmap <Del> x
+inoremap jk <ESC>
+inoremap <esc>   <NOP>
