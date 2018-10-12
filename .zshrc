@@ -77,12 +77,9 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down"]]]]"
+bindkey "^[[5~" history-beginning-search-backward
+
+bindkey "^[[6~" history-beginning-search-forward
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
