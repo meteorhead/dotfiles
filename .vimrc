@@ -126,3 +126,5 @@ noremap <Right> <NOP>
 nmap <Del> x
 inoremap jk <ESC>
 inoremap <esc>   <NOP>
+nnoremap <C-c> :make<CR>
+nnoremap <C-r> :!./%:r<CR>
