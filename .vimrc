@@ -119,12 +119,13 @@ map <C-N> :NERDTreeToggle<CR>
 " Close NERDTree if no other window is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
 nmap <Del> x
 inoremap jk <ESC>
 inoremap <esc>   <NOP>
-nnoremap <C-c> :make<CR>
+nnoremap <C-b> :make<CR>
 nnoremap <C-r> :!./%:r<CR>
