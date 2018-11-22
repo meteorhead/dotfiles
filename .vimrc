@@ -1,4 +1,6 @@
 set nocompatible              " be iMproved, required
+set visualbell                " disable beeping
+set t_vb=
 filetype off                  " required
 :fixdel
 " VIM arrow keys not functioning properly on windows
@@ -46,8 +48,6 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 " git repos on your local machine (i.e. when working on your own plugin) " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -75,6 +75,15 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/badwolf'
 Plugin 'morhetz/gruvbox'
 Plugin 'AlessandroYorba/Alduin'
+Plugin 'Andersbakken/rtags'
+Plugin 'shougo/deoplete.nvim'
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+Plugin 'Shougo/deoplete-clangx'
+Plugin 'Shougo/neoinclude.vim'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'roxma/nvim-yarp'
+Plugin 'Rip-Rip/clang_complete'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -90,9 +99,9 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 syntax enable
-"set background=dark
-colorscheme molokai
-let g:molokai_original = 1
+colorscheme gruvbox 
+set background=dark
+" let g:molokai_original = 1
 let g:rehash256 = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Terminal-as-GUI settings
@@ -129,3 +138,13 @@ inoremap jk <ESC>
 inoremap <esc>   <NOP>
 nnoremap <C-b> :make<CR>
 nnoremap <C-r> :!./%:r<CR>
+" Change clang binary path
+call deoplete#custom#var('clangx', 'clang_binary', '/usr/bin/clang')
+let g:clang_library_path = '/usr/lib/llvm-6.0/lib/libclang.so'
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" " Change clang options
+" call deoplete#custom#var('clangx', 'default_c_options', '')
+" call deoplete#custom#var('clangx', 'default_cpp_options', '')
+" Ale
+let g:ale_lint_delay = 1000 " Better performance
