@@ -66,7 +66,6 @@ set laststatus=2
 " All of your Plugins must be added before the following line
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
-Plugin 'universal-ctags/ctags'
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -76,14 +75,16 @@ Plugin 'sjl/badwolf'
 Plugin 'morhetz/gruvbox'
 Plugin 'AlessandroYorba/Alduin'
 Plugin 'Andersbakken/rtags'
-Plugin 'shougo/deoplete.nvim'
+" Plugin 'shougo/deoplete.nvim'
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
-Plugin 'Shougo/deoplete-clangx'
-Plugin 'Shougo/neoinclude.vim'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'roxma/nvim-yarp'
+" let g:deoplete#enable_at_startup = 1
+" Plugin 'Shougo/deoplete-clangx'
+"Plugin 'Shougo/neoinclude.vim'
+" Plugin 'roxma/vim-hug-neovim-rpc'
+" Plugin 'roxma/nvim-yarp'
 Plugin 'Rip-Rip/clang_complete'
+Plugin 'majutsushi/tagbar'
+Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -99,7 +100,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 syntax enable
-colorscheme gruvbox 
+colorscheme molokai 
 set background=dark
 " let g:molokai_original = 1
 let g:rehash256 = 1
@@ -139,12 +140,19 @@ inoremap <esc>   <NOP>
 nnoremap <C-b> :make<CR>
 nnoremap <C-r> :!./%:r<CR>
 " Change clang binary path
-call deoplete#custom#var('clangx', 'clang_binary', '/usr/bin/clang')
-let g:clang_library_path = '/usr/lib/llvm-6.0/lib/libclang.so'
+" call deoplete#custom#var('clangx', 'clang_binary', '/usr/bin/clang')
+let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+nmap <C-G> :TagbarToggle<CR>
 " " Change clang options
 " call deoplete#custom#var('clangx', 'default_c_options', '')
 " call deoplete#custom#var('clangx', 'default_cpp_options', '')
 " Ale
-let g:ale_lint_delay = 1000 " Better performance
+" let g:ale_lint_delay = 1000 " Better performance
+ " path to directory where library can be found
+" let g:clang_library_path='/usr/lib/llvm-6.0/lib'
+" or path directly to the library file
+:nmap <c-s> :w<CR>
+:imap <c-s> jk:w<CR>a

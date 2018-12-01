@@ -101,3 +101,4 @@ bindkey "^[[6~" history-beginning-search-forward
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -al'
+stty -ixon
