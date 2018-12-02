@@ -83,8 +83,10 @@ Plugin 'Andersbakken/rtags'
 " Plugin 'roxma/vim-hug-neovim-rpc'
 " Plugin 'roxma/nvim-yarp'
 Plugin 'Rip-Rip/clang_complete'
+let g:clang_use_library = 1
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -155,4 +157,4 @@ nmap <C-G> :TagbarToggle<CR>
 " let g:clang_library_path='/usr/lib/llvm-6.0/lib'
 " or path directly to the library file
 :nmap <c-s> :w<CR>
-:imap <c-s> jk:w<CR>a
+:imap <c-s> jk:w<CR>
