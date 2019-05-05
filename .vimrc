@@ -75,18 +75,21 @@ Plugin 'sjl/badwolf'
 Plugin 'morhetz/gruvbox'
 Plugin 'AlessandroYorba/Alduin'
 Plugin 'Andersbakken/rtags'
-" Plugin 'shougo/deoplete.nvim'
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-" Plugin 'Shougo/deoplete-clangx'
-"Plugin 'Shougo/neoinclude.vim'
-" Plugin 'roxma/vim-hug-neovim-rpc'
-" Plugin 'roxma/nvim-yarp'
-Plugin 'Rip-Rip/clang_complete'
 let g:clang_use_library = 1
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-surround'
+Plugin 'rhysd/vim-clang-format'
+let g:clang_format#auto_format=1
+let g:clang_format#code_style='chromium'
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "BreakBeforeBraces" : "Stroustrup"}
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -120,11 +123,9 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " move among buffers with CTRL
-
-map <C-K> :bnext<CR>
-map <C-J> :bprev<CR>
-map <C-X> :bdelete<CR>
-
+map <c-x> :bdelete<CR>
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
 " Toggle NERDTree
 map <C-N> :NERDTreeToggle<CR>
 
@@ -143,11 +144,12 @@ nnoremap <C-b> :make<CR>
 nnoremap <C-r> :!./%:r<CR>
 " Change clang binary path
 " call deoplete#custom#var('clangx', 'clang_binary', '/usr/bin/clang')
-let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
+let g:clang_library_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 nmap <C-G> :TagbarToggle<CR>
+nmap <C-F> :ClangFormat<CR>
 " " Change clang options
 " call deoplete#custom#var('clangx', 'default_c_options', '')
 " call deoplete#custom#var('clangx', 'default_cpp_options', '')
